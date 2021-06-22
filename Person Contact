@@ -1,0 +1,29 @@
+package com.bhester;
+
+public class PersonContact extends BaseContact {
+
+	private String description;
+	private int dateOfBirth;
+
+	public PersonContact(int contactId, String name, int phoneNumber) {
+		super(contactId, name, phoneNumber);
+		// TODO Auto-generated constructor stub
+	}
+
+	public PersonContact(int contactId, String name, int phoneNumber, String description, int dateOfBirth) {
+		super(contactId, name, phoneNumber);
+		this.description = description;
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	@Override
+	public String toString() {
+		return "PersonContact [description=" + description + ", dateOfBirth=" + dateOfBirth + ", toString()="
+				+ super.toString() + "]";
+	}
+
+
+
+	
+
+}
