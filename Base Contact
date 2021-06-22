@@ -1,0 +1,46 @@
+package com.bhester;
+
+public class BaseContact {
+
+	private int contactId;
+	private String name;
+	private int phoneNumber;
+	
+	public BaseContact(int contactId, String name, int phoneNumber) {
+		super();
+		this.contactId = contactId;
+		this.name = name;
+		this.phoneNumber = phoneNumber;
+	}
+
+	@Override
+	public String toString() {
+		return "BaseContact [contactId=" + contactId + ", name=" + name + ", phoneNumber=" + phoneNumber + "]";
+	}
+
+	public int getContactId() {
+		return contactId;
+	}
+
+	public void setContactId(int contactId) {
+		this.contactId = contactId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(int phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	
+	
+}
