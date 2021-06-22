@@ -1,0 +1,13 @@
+package com.bhester;
+
+public class ConsoleStart {
+
+	public static void main(String[] args) {
+		AddressBook addressBook = new AddressBook();
+		addressBook.open();
+		addressBook.contactList();
+		addressBook.menu();
+		
+	}
+
+}
