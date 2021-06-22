@@ -1,0 +1,26 @@
+package com.bhester;
+
+public class Location {
+
+	private int locationID;
+	private String streetName;
+	private int streetNumber;
+	private String city;
+	private String state;
+	
+	public Location(int locationID, String streetName, int streetNumber, String city, String state) {
+		super();
+		this.locationID = locationID;
+		this.streetName = streetName;
+		this.streetNumber = streetNumber;
+		this.city = city;
+		this.state = state;
+	}
+
+	@Override
+	public String toString() {
+		return "Location [locationID=" + locationID + ", streetName=" + streetName + ", streetNumber=" + streetNumber
+				+ ", city=" + city + ", state=" + state + "]";
+	}
+	
+}
