@@ -1,0 +1,54 @@
+package com.bhester;
+
+public class BusinessContact extends BaseContact{
+
+		private int businessHours;
+		private String websiteUrl;
+		
+	public BusinessContact(int contactId, String name, int phoneNumber) {
+		super(contactId, name, phoneNumber);
+		// TODO Auto-generated constructor stub
+	}
+
+	
+	public BusinessContact(int contactId, String name, int phoneNumber, int businessHours, String websiteUrl) {
+		super(contactId, name, phoneNumber);
+		this.businessHours = businessHours;
+		this.websiteUrl = websiteUrl;
+	}
+
+
+	
+	@Override
+	public String toString() {
+		return "BusinessContact [businessHours=" + businessHours + ", websiteUrl=" + websiteUrl + ", toString()="
+				+ super.toString() + "]";
+	}
+
+
+	public int getBusinessHours() {
+		return businessHours;
+	}
+
+
+	public void setBusinessHours(int businessHours) {
+		this.businessHours = businessHours;
+	}
+
+
+	public String getWebsiteUrl() {
+		return websiteUrl;
+	}
+
+
+	public void setWebsiteUrl(String websiteUrl) {
+		this.websiteUrl = websiteUrl;
+	}
+
+
+	
+
+ 
+
+	
+}
