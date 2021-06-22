@@ -1,0 +1,25 @@
+package com.bhester;
+
+public class Photo {
+
+	private int photoID;
+	private String photoFileName;
+	private int dateOfPhoto;
+	private String descriptionOfPhoto;
+	
+	public Photo(int photoID, String photoFileName, int dateOfPhoto, String descriptionOfPhoto) {
+		super();
+		this.photoID = photoID;
+		this.photoFileName = photoFileName;
+		this.dateOfPhoto = dateOfPhoto;
+		this.descriptionOfPhoto = descriptionOfPhoto;
+	}
+
+	@Override
+	public String toString() {
+		return "Photo [photoID=" + photoID + ", photoFileName=" + photoFileName + ", dateOfPhoto=" + dateOfPhoto
+				+ ", descriptionOfPhoto=" + descriptionOfPhoto + "]";
+	}
+	
+	
+}
