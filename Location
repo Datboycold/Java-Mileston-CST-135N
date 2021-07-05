@@ -1,6 +1,8 @@
 package com.bhester;
 
-public class Location {
+import java.io.Serializable;
+
+public class Location implements Serializable {
 
 	private int locationID;
 	private String streetName;
@@ -21,6 +23,46 @@ public class Location {
 	public String toString() {
 		return "Location [locationID=" + locationID + ", streetName=" + streetName + ", streetNumber=" + streetNumber
 				+ ", city=" + city + ", state=" + state + "]";
+	}
+
+	public int getLocationID() {
+		return locationID;
+	}
+
+	public void setLocationID(int locationID) {
+		this.locationID = locationID;
+	}
+
+	public String getStreetName() {
+		return streetName;
+	}
+
+	public void setStreetName(String streetName) {
+		this.streetName = streetName;
+	}
+
+	public int getStreetNumber() {
+		return streetNumber;
+	}
+
+	public void setStreetNumber(int streetNumber) {
+		this.streetNumber = streetNumber;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 	
 }
