@@ -1,6 +1,8 @@
 package com.bhester;
 
-public class Photo {
+import java.io.Serializable;
+
+public class Photo implements Serializable {
 
 	private int photoID;
 	private String photoFileName;
@@ -19,6 +21,38 @@ public class Photo {
 	public String toString() {
 		return "Photo [photoID=" + photoID + ", photoFileName=" + photoFileName + ", dateOfPhoto=" + dateOfPhoto
 				+ ", descriptionOfPhoto=" + descriptionOfPhoto + "]";
+	}
+
+	public int getPhotoID() {
+		return photoID;
+	}
+
+	public void setPhotoID(int photoID) {
+		this.photoID = photoID;
+	}
+
+	public String getPhotoFileName() {
+		return photoFileName;
+	}
+
+	public void setPhotoFileName(String photoFileName) {
+		this.photoFileName = photoFileName;
+	}
+
+	public int getDateOfPhoto() {
+		return dateOfPhoto;
+	}
+
+	public void setDateOfPhoto(int dateOfPhoto) {
+		this.dateOfPhoto = dateOfPhoto;
+	}
+
+	public String getDescriptionOfPhoto() {
+		return descriptionOfPhoto;
+	}
+
+	public void setDescriptionOfPhoto(String descriptionOfPhoto) {
+		this.descriptionOfPhoto = descriptionOfPhoto;
 	}
 	
 	
