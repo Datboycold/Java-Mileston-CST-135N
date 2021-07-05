@@ -27,11 +27,12 @@ public class AddressBook {
 			System.out.println("1. Add a Person Contact");
 			System.out.println("2. Add a Business Contact");
 			System.out.println("3. Show All contacts");
-			System.out.println("4. Update a Contact");
-			System.out.println("5. Delete a Contact");
-			System.out.println("6. Search for a Contact");
-			System.out.println("7. Sort all Contacts");
-			System.out.println("8. Exit");
+			System.out.println("4. Show Details of one Contact");
+			System.out.println("5. Update a Contact");
+			System.out.println("6. Delete a Contact");
+			System.out.println("7. Search for a Contact by Name");
+			System.out.println("8. Sort Contacts by Name");
+			System.out.println("9. Exit");
 			System.out.println("==========");
 			System.out.println("What options to Perform?");
 			int option = sc.nextInt();
@@ -48,18 +49,21 @@ public class AddressBook {
 				contactList();
 				break;
 			case 4:
-				updateAContact();
+				detailsOfOneContact();
 				break;
 			case 5:
-				deleteAContact();
+				updateAContact();
 				break;
 			case 6:
-				searchForContact();
+				deleteAContact();
 				break;
 			case 7:
-				sortAllContacts();
+				searchForContact();
 				break;
 			case 8:
+				sortAllContacts();
+				break;
+			case 9:
 				System.out.println("Thanks For Using My Application");
 				System.exit(0);
 			default:
@@ -69,10 +73,37 @@ public class AddressBook {
 
 	}
 
+	private void detailsOfOneContact() {
+		System.out.println("==========");
+		System.out.println("Details Of Contact");
+		System.out.println("==========");
+		contactList();
+		System.out.println("What Contact to see Details? ");
+		int item = sc.nextInt();
+		sc.nextLine();
+		System.out.println("ContactID \t" + contacts.get(item - 1).getContactId());
+		System.out.println("Name \t" + contacts.get(item - 1).getName());
+		System.out.println("Phone Number\t" + contacts.get(item - 1).getPhoneNumber());
+		if (contacts.get(item - 1) instanceof BusinessContact) {
+			System.out.println("Business Hours \t" + ((BusinessContact) contacts.get(item - 1)).getBusinessHours());
+			System.out.println("Website URL \t" + ((BusinessContact) contacts.get(item - 1)).getWebsiteUrl());
+		}
+
+		else if (contacts.get(item - 1) instanceof PersonContact) {
+			System.out.println("Description \t" + ((PersonContact) contacts.get(item - 1)).getDescription());
+			System.out.println("Date of Birth \t" + ((PersonContact) contacts.get(item - 1)).getDateOfBirth());
+		}
+	
+
+	}
+
 	private void sortAllContacts() {
 		System.out.println("==========");
 		System.out.println("Sort All Contacts");
 		System.out.println("==========");
+		ComparatorName cn = new ComparatorName();
+		contacts.sort(cn);
+		contactList();
 
 	}
 
@@ -80,6 +111,15 @@ public class AddressBook {
 		System.out.println("==========");
 		System.out.println("Search For Contacts");
 		System.out.println("==========");
+		System.out.println("What do you want to search for");
+		String search = sc.nextLine();
+
+		int counter = 1;
+
+		for (BaseContact c : contacts) {
+			if (c.getName().toUpperCase().contains(search.toUpperCase()))
+				System.out.println(counter++ + "." + c.toString());
+		}
 
 	}
 
@@ -93,7 +133,6 @@ public class AddressBook {
 		int item = sc.nextInt();
 		sc.nextLine();
 		contacts.remove(item - 1);
-		
 
 	}
 
@@ -106,10 +145,19 @@ public class AddressBook {
 		System.out.println("What Contact do you want to update");
 		int item = sc.nextInt();
 		sc.nextLine();
+
+		if (contacts.get(item) instanceof BusinessContact) {
+			updateBusinessContact(item);
+			System.out.println("Updating a Business Contact");
+		} else if (contacts.get(item) instanceof PersonContact) {
+			updatePersonContact(item);
+			System.out.println("Updating a Person Contact");
+
+		} else {
+			System.out.println("I do not recognize that Contact");
+		}
 		System.out.println();
 		updateBusinessContact(item);
-		
-		
 
 	}
 
@@ -117,95 +165,129 @@ public class AddressBook {
 		System.out.println("==========");
 		System.out.println("Update Business Contact");
 		System.out.println("==========");
-		//public BusinessContact(int contactId, String name, int phoneNumber, int businessHours, String websiteUrl)
+		// public BusinessContact(int contactId, String name, int phoneNumber, int
+		// businessHours, String websiteUrl)
 		System.out.println("What is the Contact ID? [" + contacts.get(item - 1).getContactId() + "]");
 		int cid = sc.nextInt();
 		sc.nextLine();
-		contacts.get(item -1).setContactId(cid);
-		
-		System.out.println("What is the Name? [" + contacts.get(item - 1).getName() +"]");
+		contacts.get(item - 1).setContactId(cid);
+
+		System.out.println("What is the Name? [" + contacts.get(item - 1).getName() + "]");
 		String name = sc.nextLine();
 		contacts.get(item - 1).setName(name);
-		
-		System.out.println("What is the Phone Number? [" + contacts.get(item -1).getPhoneNumber() +"]");
+
+		System.out.println("What is the Phone Number? [" + contacts.get(item - 1).getPhoneNumber() + "]");
 		int phnumber = sc.nextInt();
 		sc.nextLine();
 		contacts.get(item - 1).setPhoneNumber(phnumber);
-		
-		System.out.println("What are the Business Hours? [" + ((BusinessContact)contacts.get(item -1)).getBusinessHours() + "]");
+
+		System.out.println(
+				"What are the Business Hours? [" + ((BusinessContact) contacts.get(item - 1)).getBusinessHours() + "]");
 		int bhrs = sc.nextInt();
 		sc.nextLine();
-		((BusinessContact)contacts.get(item -1)).setBusinessHours(bhrs);
-		
-		System.out.println("What is the Website URL? [" + ((BusinessContact)contacts.get(item - 1)).getWebsiteUrl() + "]");
+		((BusinessContact) contacts.get(item - 1)).setBusinessHours(bhrs);
+
+		System.out.println(
+				"What is the Website URL? [" + ((BusinessContact) contacts.get(item - 1)).getWebsiteUrl() + "]");
 		String websiteurl = sc.nextLine();
-		((BusinessContact)contacts.get(item-1)).setWebsiteUrl(websiteurl);
-		
-		
-		
-		
+		((BusinessContact) contacts.get(item - 1)).setWebsiteUrl(websiteurl);
+
 	}
-	
+
 	private void addBusinessContact() {
 		System.out.println("==========");
 		System.out.println("Add Business Contact");
 		System.out.println("==========");
-		//public BusinessContact(int contactId, String name, int phoneNumber, int businessHours, String websiteUrl)
+		// public BusinessContact(int contactId, String name, int phoneNumber, int
+		// businessHours, String websiteUrl)
 		System.out.println("What is the Contact ID");
 		int cid = sc.nextInt();
 		sc.nextLine();
-		
+
 		System.out.println("What is the Name");
 		String name = sc.nextLine();
-		
+
 		System.out.println("What is the Phone Number");
 		int phnumber = sc.nextInt();
 		sc.nextLine();
-		
+
 		System.out.println("What are the Business Hours");
 		int bhrs = sc.nextInt();
 		sc.nextLine();
-		
+
 		System.out.println("What is the Website URL");
 		String websiteurl = sc.nextLine();
-		
+
 		contacts.add(new BusinessContact(cid, name, phnumber, bhrs, websiteurl));
-		
-		
+
+	}
+
+	private void updatePersonContact(int item) {
+		System.out.println("==========");
+		System.out.println("Update Person Contact");
+		System.out.println("==========");
+
+		System.out.println("What is the Contact ID? [" + contacts.get(item - 1).getContactId() + "]");
+		int cid = sc.nextInt();
+		sc.nextLine();
+		contacts.get(item - 1).setContactId(cid);
+
+		System.out.println("What is the Name? [" + contacts.get(item - 1).getName() + "]");
+		String name = sc.nextLine();
+		contacts.get(item - 1).setName(name);
+
+		System.out.println("What is the Phone Number? [" + contacts.get(item - 1).getPhoneNumber() + "]");
+		int phnumber = sc.nextInt();
+		sc.nextLine();
+		contacts.get(item - 1).setPhoneNumber(phnumber);
+
+		System.out
+				.println("What is the Description [" + ((PersonContact) contacts.get(item - 1)).getDescription() + "]");
+		String descrip = sc.nextLine();
+		contacts.get(item - 1).setName(descrip);
+
+		System.out.println("Date of Birth [" + ((PersonContact) contacts.get(item - 1)).getDateOfBirth() + "]");
+		int dob = sc.nextInt();
+		sc.nextLine();
+		((PersonContact) contacts.get(item - 1)).setDateOfBirth(dob);
+
 	}
 
 	private void addPersonContact() {
 		System.out.println("==========");
 		System.out.println("Add Person Contact");
 		System.out.println("==========");
-		// public PersonContact(int contactId, String name, int phoneNumber, String description, int dateOfBirth)
+		// public PersonContact(int contactId, String name, int phoneNumber, String
+		// description, int dateOfBirth)
 		System.out.println("What is the Contact ID");
 		int cid = sc.nextInt();
 		sc.nextLine();
-		
+
 		System.out.println("What is the Name");
 		String name = sc.nextLine();
-		
+
 		System.out.println("What is the Phone Number");
 		int phnumber = sc.nextInt();
 		sc.nextLine();
-		
+
 		System.out.println("What is the description");
 		String description = sc.nextLine();
-		
+
 		System.out.println("What is the Date of Birth");
 		int dob = sc.nextInt();
 		sc.nextLine();
-		
+
 		contacts.add(new PersonContact(cid, name, phnumber, description, dob));
-		
-	}
-int counter = 1;
-	
-	public void contactList() {
-		for (BaseContact c : contacts)
-			System.out.println(counter++ + "." + c.toString());
+
 	}
 
-	
+	public void contactList() {
+
+		int counter = 1;
+
+		for (BaseContact c : contacts)
+			System.out.println(counter++ + "." + c.toString());
+
+	}
+
 }
