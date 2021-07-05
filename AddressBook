@@ -10,12 +10,10 @@ public class AddressBook {
 	Scanner sc = new Scanner(System.in);
 
 	public void open() {
-		contacts.add(new PersonContact(1, "John", 480, "Stocky", 12));
-		contacts.add(new PersonContact(2, "Ashley", 490, "Short", 132));
-		contacts.add(new PersonContact(3, "Brandon", 470, "Tall", 132));
-		contacts.add(new BusinessContact(1, "Joey", 602, 45, "go.com"));
-		contacts.add(new BusinessContact(2, "Lance", 612, 35, "go.org"));
-		contacts.add(new BusinessContact(3, "Joey", 622, 30, "go.net"));
+		
+		contacts = DataService.read();
+		menu();
+		
 
 	}
 
@@ -65,6 +63,7 @@ public class AddressBook {
 				break;
 			case 9:
 				System.out.println("Thanks For Using My Application");
+				DataService.write(contacts);
 				System.exit(0);
 			default:
 				System.out.println("Please enter a different option");
