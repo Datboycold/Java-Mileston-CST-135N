@@ -1,0 +1,60 @@
+package com.bhester;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+public class DataService {
+
+	public static List<BaseContact> read(){
+		
+		ArrayList<BaseContact> items = new ArrayList<>();
+		
+		items.add(new PersonContact(1, "John", 480, "Stocky", 12));
+		items.add(new PersonContact(2, "Ashley", 490, "Short", 132));
+		items.add(new PersonContact(3, "Brandon", 470, "Tall", 132));
+		items.add(new BusinessContact(1, "Joey", 602, 45, "go.com"));
+		items.add(new BusinessContact(2, "Lance", 612, 35, "go.org"));
+		items.add(new BusinessContact(3, "Joey", 622, 30, "go.net"));
+		
+		try {
+			FileInputStream fis = new FileInputStream("contacts.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			items =(ArrayList<BaseContact>) ois.readObject();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return items;
+	}
+	
+	public static void write(List<BaseContact> items) {
+		
+		try {
+			FileOutputStream fos = new FileOutputStream("contacts.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(items);
+			oos.close();
+			fos.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+}
