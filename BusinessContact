@@ -1,46 +1,54 @@
 package com.bhester;
 
-public class BaseContact {
+public class BusinessContact extends BaseContact{
 
-	private int contactId;
-	private String name;
-	private int phoneNumber;
-	
-	public BaseContact(int contactId, String name, int phoneNumber) {
-		super();
-		this.contactId = contactId;
-		this.name = name;
-		this.phoneNumber = phoneNumber;
+		private int businessHours;
+		private String websiteUrl;
+		
+	public BusinessContact(int contactId, String name, int phoneNumber) {
+		super(contactId, name, phoneNumber);
+		// TODO Auto-generated constructor stub
 	}
 
+	
+	public BusinessContact(int contactId, String name, int phoneNumber, int businessHours, String websiteUrl) {
+		super(contactId, name, phoneNumber);
+		this.businessHours = businessHours;
+		this.websiteUrl = websiteUrl;
+	}
+
+
+	
 	@Override
 	public String toString() {
-		return "BaseContact [contactId=" + contactId + ", name=" + name + ", phoneNumber=" + phoneNumber + "]";
+		return "BusinessContact [businessHours=" + businessHours + ", websiteUrl=" + websiteUrl + ", toString()="
+				+ super.toString() + "]";
 	}
 
-	public int getContactId() {
-		return contactId;
+
+	public int getBusinessHours() {
+		return businessHours;
 	}
 
-	public void setContactId(int contactId) {
-		this.contactId = contactId;
+
+	public void setBusinessHours(int businessHours) {
+		this.businessHours = businessHours;
 	}
 
-	public String getName() {
-		return name;
+
+	public String getWebsiteUrl() {
+		return websiteUrl;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+
+	public void setWebsiteUrl(String websiteUrl) {
+		this.websiteUrl = websiteUrl;
 	}
 
-	public int getPhoneNumber() {
-		return phoneNumber;
-	}
 
-	public void setPhoneNumber(int phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
 	
+
+ 
+
 	
 }
