@@ -1,6 +1,8 @@
 package com.bhester;
 
-public class PersonContact extends BaseContact {
+import java.io.Serializable;
+
+public class PersonContact extends BaseContact implements Serializable {
 
 	private String description;
 	private int dateOfBirth;
@@ -43,3 +45,4 @@ public class PersonContact extends BaseContact {
 	
 
 }
+
